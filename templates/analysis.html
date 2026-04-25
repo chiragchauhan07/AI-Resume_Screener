@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+<title>Nexus AI | Processing Career Intelligence</title>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#2563eb",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-secondary-container": "#00714d",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed": "#002113",
+                        "on-background": "#191c1e",
+                        "on-surface": "#191c1e",
+                        "tertiary-fixed": "#ffdad7",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#c3c6d7",
+                        "on-error": "#ffffff",
+                        "background": "#f7f9fb",
+                        "on-surface-variant": "#434655",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-tertiary-container": "#ffecea",
+                        "tertiary-fixed-dim": "#ffb3ad",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "secondary": "#006c49",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#dbe1ff",
+                        "outline": "#737686",
+                        "tertiary": "#ab0b1c",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-tint": "#0053db",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary-fixed": "#410004",
+                        "on-tertiary-fixed-variant": "#930013",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eceef0",
+                        "surface-container-low": "#f2f4f6",
+                        "primary": "#004ac6",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary-fixed": "#00174b",
+                        "surface-dim": "#d8dadc",
+                        "secondary-container": "#6cf8bb",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#cf2c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .shimmer-progress {
+            background: linear-gradient(90deg, #2563eb 0%, #6cf8bb 50%, #2563eb 100%);
+            background-size: 200% 100%;
+            animation: shimmer 2s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
+        }
+        .pulse-container {
+            animation: soft-pulse 3s infinite ease-in-out;
+        }
+        @keyframes soft-pulse {
+            0%, 100% { opacity: 0.8; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.02); }
+        }
+        /* Premium Slide Transition */
+        @view-transition { navigation: auto; }
+        
+        ::view-transition-old(root) {
+            animation: 0.4s cubic-bezier(0.4, 0, 0.2, 1) both slide-out;
+        }
+        ::view-transition-new(root) {
+            animation: 0.4s cubic-bezier(0.4, 0, 0.2, 1) both slide-in;
+        }
+
+        @keyframes slide-in {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slide-out {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-20px); opacity: 0; }
+        }
+
+        body { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+<!-- Top Navigation Anchor -->
+<header class="bg-white/80 backdrop-blur-xl shadow-sm docked full-width top-0 z-50 fixed flex justify-between items-center w-full px-6 py-3 h-16">
+<div class="flex items-center gap-4">
+    <a href="{{ url_for('job_detail', job_id=job_id) }}" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 transition-colors" title="Back to Job">
+        <span class="material-symbols-outlined text-slate-600">arrow_back</span>
+    </a>
+    <span class="text-xl font-extrabold text-blue-700 tracking-tighter font-headline">The Intelligent Curator</span>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-500 font-['Inter'] text-sm font-medium hover:bg-slate-50 transition-colors py-2 px-3 rounded-lg" href="{{ url_for('dashboard') }}">Home</a>
+<a class="text-slate-500 font-['Inter'] text-sm font-medium hover:bg-slate-50 transition-colors py-2 px-3 rounded-lg" href="#">Career Roadmap</a>
+</div>
+<div class="flex items-center space-y-2">
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-500 hover:bg-slate-50 p-2 rounded-full transition-colors">notifications</button>
+<button class="material-symbols-outlined text-slate-500 hover:bg-slate-50 p-2 rounded-full transition-colors">settings</button>
+<div class="h-8 w-8 rounded-full bg-slate-200 overflow-hidden">
+<img class="h-full w-full object-cover" data-alt="professional portrait of a confident male executive in a clean studio setting with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCgRKrpMkskJViOm8JjJoOn_9DzAnzbCeijQsj46u9Vw19kcfSSTSrfMptM5y92GErFWg_UhgAsC-zY_agtViunS4i9DcXKeLv3Ec0wD0jMlzAQxhwB2rpgPoD7RvS20fbiI_iSWCNeHryO84_RZXXmpeFwFUsJz3pyUcsbt2V8YKyi6EUEVP0FpGivAnVXeW8mvsZ2Vey45zj0AneXAui5o7VGaoCjeH9oVP6zhZ7Qwu73LvMXMyLwExFKvar8G5HyRCAOmvrB17L7"/>
+</div>
+</div>
+</div>
+</header>
+<main class="min-h-screen flex items-center justify-center pt-16 px-6">
+<!-- Processing Canvas -->
+<div class="max-w-4xl w-full grid grid-cols-1 md:grid-cols-12 gap-8 items-center">
+<!-- Side Visual Element (Editorial Asymmetry) -->
+<div class="md:col-span-5 hidden md:block">
+<div class="relative rounded-xl overflow-hidden aspect-[4/5] shadow-2xl group">
+<img class="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="minimalist overhead shot of a clean workspace with a high-end laptop, notebook, and a designer pen on a white desk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB35K9Xq1i4msbHJ9v_i_FaBgrnpJbroNI1z9dzhVHAIRN2aA5UqEj_ke-FCGhA17XnkrUB7Kx01zkp7vFQFoMUxKEELtp4vCGi-v6ELE-A66rT26mdx3NGi_Wo7_sl84CPogxqaHDc36tbPyrJHuV4hEwZfW5wv6XhwSYb9J1ABX96Lz5drxKS7RJfUuzBCbiZIk9BxUls2rwTEdfUqKG-r8Z89fyJH3wP6ur_YGaLVJP3J8YRQX0bkh7pnkR5eWIaTVV6DZVZmPsw"/>
+<div class="absolute inset-0 bg-primary/20 backdrop-overlay"></div>
+<div class="absolute bottom-6 left-6 right-6 bg-white/10 backdrop-blur-md p-6 rounded-lg border border-white/20">
+<span class="text-white text-xs font-bold uppercase tracking-widest block mb-2 font-label">System Status</span>
+<div class="flex items-center gap-2">
+<div class="h-2 w-2 rounded-full bg-secondary-fixed animate-pulse"></div>
+<p class="text-white text-sm font-medium">Neural Engine Active</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Central Content Card -->
+<div class="md:col-span-7 flex flex-col space-y-10 pulse-container">
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<div class="bg-secondary-container p-2 rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" style="font-variation-settings: 'FILL' 1;">psychology</span>
+</div>
+<span class="text-secondary font-bold tracking-wider text-xs uppercase font-label">Resume Intelligence</span>
+</div>
+<h1 class="text-on-surface font-headline font-extrabold text-4xl md:text-5xl leading-tight tracking-tight">
+                        Analyzing your resume with <span class="text-primary italic">Nexus AI...</span>
+</h1>
+</div>
+<!-- Progress Section -->
+<div class="space-y-6">
+<div class="relative">
+<div class="h-3 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div id="progressBar" class="shimmer-progress h-full w-0 rounded-full transition-all duration-75"></div>
+</div>
+<div class="mt-4 flex justify-between items-center text-on-surface-variant">
+<span class="text-sm font-medium font-body italic">Processing Skill Matrix...</span>
+<span id="progressText" class="text-sm font-bold font-headline text-primary">0%</span>
+</div>
+</div>
+<!-- Insight List (Contextual Subtext) -->
+<div class="space-y-4 pt-4">
+<div class="flex items-start gap-4 p-4 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-primary mt-0.5">check_circle</span>
+<div>
+<p class="font-semibold text-on-surface text-sm">Identifying skill matches</p>
+<p class="text-xs text-on-surface-variant mt-1 leading-relaxed">Mapping your expertise against current industry benchmarks and requirements.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-primary mt-0.5">search</span>
+<div>
+<p class="font-semibold text-on-surface text-sm">Experience gaps</p>
+<p class="text-xs text-on-surface-variant mt-1 leading-relaxed">Detecting pivotal areas for growth to align with your career roadmap.</p>
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 bg-surface-container-low rounded-xl">
+<span class="material-symbols-outlined text-primary mt-0.5">folder_special</span>
+<div>
+<p class="font-semibold text-on-surface text-sm">Relevant projects</p>
+<p class="text-xs text-on-surface-variant mt-1 leading-relaxed">Highlighting impact-driven initiatives that differentiate your profile.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Action (Subtle) -->
+<div class="flex items-center justify-between pt-4">
+<p class="text-xs text-on-surface-variant font-medium">Estimated time remaining: 12 seconds</p>
+<button class="text-xs font-bold text-slate-400 hover:text-error transition-colors uppercase tracking-widest font-label">Cancel Analysis</button>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer Anchor -->
+<footer class="w-full border-t border-slate-100 mt-20 tonal-shift bg-slate-50">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 max-w-7xl mx-auto">
+<p class="font-['Inter'] text-xs text-slate-500">© 2024 The Intelligent Curator. Editorial Career Management.</p>
+<div class="flex space-x-6 mt-4 md:mt-0">
+<a class="font-['Inter'] text-xs text-slate-400 hover:text-slate-900 transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-slate-400 hover:text-slate-900 transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-slate-400 hover:text-slate-900 transition-colors" href="#">Help Center</a>
+<a class="font-['Inter'] text-xs text-slate-400 hover:text-slate-900 transition-colors" href="#">API Documentation</a>
+</div>
+</div>
+</footer>
+<script>
+    const bar = document.getElementById('progressBar');
+    const text = document.getElementById('progressText');
+    let progress = 0;
+    
+    const interval = setInterval(() => {
+        progress += 1;
+        if(progress > 100) progress = 100;
+        bar.style.width = progress + '%';
+        text.innerText = progress + '%';
+        
+        if (progress === 100) {
+            clearInterval(interval);
+        }
+    }, 30); // 100 frames over 3000ms
+
+    // Force exact 3-second redirect block
+    setTimeout(async () => {
+        const response = await fetch("{{ url_for('run_analysis', job_id=job_id) }}");
+        const data = await response.json();
+        if(data.redirect) {
+            window.location.replace(data.redirect);
+        }
+    }, 3000);
+</script>
+</body></html>

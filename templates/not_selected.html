@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+<title>Match Results - The Intelligent Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#2563eb",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-secondary-container": "#00714d",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed": "#002113",
+                        "on-background": "#191c1e",
+                        "on-surface": "#191c1e",
+                        "tertiary-fixed": "#ffdad7",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#c3c6d7",
+                        "on-error": "#ffffff",
+                        "background": "#f7f9fb",
+                        "on-surface-variant": "#434655",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-tertiary-container": "#ffecea",
+                        "tertiary-fixed-dim": "#ffb3ad",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "secondary": "#006c49",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#dbe1ff",
+                        "outline": "#737686",
+                        "tertiary": "#ab0b1c",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-tint": "#0053db",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary-fixed": "#410004",
+                        "on-tertiary-fixed-variant": "#930013",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eceef0",
+                        "surface-container-low": "#f2f4f6",
+                        "primary": "#004ac6",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary-fixed": "#00174b",
+                        "surface-dim": "#d8dadc",
+                        "secondary-container": "#6cf8bb",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#cf2c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .match-chart {
+            background: conic-gradient(#ab0b1c {{ analysis.match_percentage * 3.6 }}deg, #e0e3e5 0deg);
+        }
+        
+        /* Morph view transition */
+        @view-transition { navigation: auto; }
+        body { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body antialiased">
+<!-- Top Navigation Bar -->
+<nav class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl docked full-width top-0 z-50 shadow-sm flex justify-between items-center w-full px-6 py-3 h-16 sticky">
+<div class="flex items-center gap-4">
+    <a href="{{ url_for('job_detail', job_id=job_id) }}" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 transition-colors" title="Back to Job">
+        <span class="material-symbols-outlined text-slate-600">arrow_back</span>
+    </a>
+    <span class="text-xl font-extrabold text-blue-700 dark:text-blue-500 tracking-tighter font-['Manrope']">The Intelligent Curator</span>
+</div>
+<div class="hidden md:flex items-center gap-6">
+<a class="text-slate-500 dark:text-slate-400 font-['Manrope'] font-bold tracking-tight hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors px-3 py-2 rounded-lg" href="{{ url_for('dashboard') }}">Home</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
+<img alt="User Profile Avatar" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCmvx4_OZRQrdvO_zsKZZqMK_ozE5ZSPj6TQY6fu1_pLIuT1-r6xcpI4xSKMSWgzVsG6T9ynXgBDmdMImcrePwwPg4J_aT4UzqQli88f1_tQ--SNngqbdxupttbLQZKNbU7ubLKkowderjtaxGdFBitMbYtJTDcyyXqGpGlILdpyBNcetw-QJeHNuGhuvRVCuAVsdwFkJAaOJcrfC0wmn1Qg0WdO4kk0VOdIv2KrFbeje7WcgafNOqxu2PfM2muNllTKLLNHWWjo73G"/>
+</div>
+</div>
+</nav>
+<main class="max-w-7xl mx-auto px-6 py-12 lg:py-20">
+<!-- Result Header / Asymmetric Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start mb-20">
+<div class="lg:col-span-7 space-y-6">
+<span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant text-sm font-semibold tracking-wide">
+<span class="material-symbols-outlined text-sm">info</span>
+                    Analysis Complete
+                </span>
+<h1 class="font-headline text-5xl lg:text-6xl font-extrabold tracking-tighter text-on-surface leading-[1.1]">
+                    Not quite a match yet, but we can <span class="text-primary italic">help you get there.</span>
+</h1>
+<p class="text-xl text-on-surface-variant max-w-xl leading-relaxed">
+                    Our AI has evaluated your profile against the target role. You're showing strong foundations, but specific technical gaps are holding back your score.
+                </p>
+                    <div class="pt-4 flex flex-wrap gap-4">
+                        <a href="{{ url_for('roadmap', job_id=job_id) }}" class="px-8 py-4 bg-gradient-to-br from-primary to-primary-container text-on-primary font-bold rounded-xl shadow-lg hover:scale-105 transition-transform duration-200 flex items-center gap-3">
+                            View Improvement Roadmap
+                            <span class="material-symbols-outlined">arrow_forward</span>
+                        </a>
+                        <a href="{{ url_for('download_report', job_id=job_id) }}" target="_blank" class="px-8 py-4 bg-surface-container-high text-on-surface font-semibold rounded-xl hover:bg-surface-dim transition-colors inline-block text-center flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">download</span> Download Report
+                        </a>
+                    </div>
+</div>
+<!-- Match Score Visual -->
+<div class="lg:col-span-5 flex justify-center">
+<div class="relative w-72 h-72 lg:w-96 lg:h-96">
+<div class="absolute inset-0 rounded-full match-chart opacity-10"></div>
+                        <div class="absolute inset-8 rounded-full bg-surface-container-lowest shadow-2xl flex flex-col items-center justify-center border-t border-white/20">
+                            <span class="text-7xl lg:text-8xl font-black font-headline tracking-tighter text-tertiary">{{ analysis.match_percentage }}%</span>
+                            <span class="text-sm font-bold text-on-surface-variant tracking-widest uppercase">Match Score</span>
+                        </div>
+<!-- Decorative Orbitals -->
+<div class="absolute top-0 right-0 w-16 h-16 bg-tertiary-fixed rounded-full flex items-center justify-center animate-pulse shadow-xl">
+<span class="material-symbols-outlined text-tertiary">trending_up</span>
+</div>
+</div>
+</div>
+</div>
+
+<!-- What Built Your Score - Main Breakdown -->
+<div class="bg-surface-container-lowest p-8 lg:p-10 rounded-[2rem] shadow-sm border-l-4 border-secondary mb-8">
+    <h3 class="font-headline text-2xl font-bold mb-6 flex items-center gap-3">
+        <span class="p-2 bg-secondary/10 text-secondary rounded-lg">
+            <span class="material-symbols-outlined">trending_up</span>
+        </span>
+        What Built Your Selection Percentage
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {% if analysis.matched_skills %}
+        <div>
+            <h4 class="text-xs font-bold text-secondary uppercase tracking-widest mb-3">Detected Required Skills</h4>
+            <p class="text-sm text-on-surface-variant mb-3">These core skills were successfully identified in your resume:</p>
+            <div class="flex flex-wrap gap-2">
+                {% for skill in analysis.matched_skills %}
+                <span class="bg-secondary-container text-on-secondary-container px-4 py-1.5 rounded-full text-sm font-semibold">✓ {{ skill }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if analysis.completeness.found %}
+        <div>
+            <h4 class="text-xs font-bold text-secondary uppercase tracking-widest mb-3">Valid Resume Sections</h4>
+            <p class="text-sm text-on-surface-variant mb-3">These professional sections are well-structured in your document:</p>
+            <div class="flex flex-wrap gap-2">
+                {% for section in analysis.completeness.found %}
+                <span class="bg-blue-100 text-blue-700 px-3 py-1.5 rounded-full text-sm font-semibold capitalize">✓ {{ section }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% if not analysis.matched_skills and not analysis.completeness.found %}
+    <p class="text-sm text-on-surface-variant">We couldn't detect any structured sections or matching skills. A fresh start using our Resume Builder might help!</p>
+    {% endif %}
+</div>
+
+<!-- What Reduced Your Score - Main Breakdown -->
+<div class="bg-surface-container-lowest p-8 lg:p-10 rounded-[2rem] shadow-sm border-l-4 border-tertiary mb-8">
+    <h3 class="font-headline text-2xl font-bold mb-6 flex items-center gap-3">
+        <span class="p-2 bg-tertiary/10 text-tertiary rounded-lg">
+            <span class="material-symbols-outlined">trending_down</span>
+        </span>
+        What Reduced Your Selection Percentage
+    </h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {% if analysis.missing_skills %}
+        <div>
+            <h4 class="text-xs font-bold text-tertiary uppercase tracking-widest mb-3">Missing Required Skills</h4>
+            <p class="text-sm text-on-surface-variant mb-3">These skills are required for this role but were not found in your resume:</p>
+            <div class="flex flex-wrap gap-2">
+                {% for skill in analysis.missing_skills %}
+                <span class="bg-tertiary-fixed text-on-tertiary-fixed-variant px-4 py-1.5 rounded-full text-sm font-semibold">✗ {{ skill }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        {% if analysis.completeness.missing %}
+        <div>
+            <h4 class="text-xs font-bold text-tertiary uppercase tracking-widest mb-3">Missing Resume Sections</h4>
+            <p class="text-sm text-on-surface-variant mb-3">These sections were missing from your resume, reducing your completeness score:</p>
+            <div class="flex flex-wrap gap-2">
+                {% for section in analysis.completeness.missing %}
+                <span class="bg-error-container text-on-error-container px-3 py-1.5 rounded-full text-sm font-semibold capitalize">✗ {{ section }}</span>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    {% if not analysis.missing_skills and not analysis.completeness.missing %}
+    <p class="text-sm text-on-surface-variant">No obvious gaps were detected. Your score may be impacted by the depth of content under each section.</p>
+    {% endif %}
+</div>
+
+<!-- Bento Grid Analysis Sections -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Skill Gap Analysis -->
+<div class="md:col-span-2 bg-surface-container-low rounded-[2rem] p-8 lg:p-10 relative overflow-hidden">
+<div class="relative z-10">
+<h3 class="font-headline text-2xl font-bold mb-8 flex items-center gap-3">
+<span class="p-2 bg-tertiary/10 text-tertiary rounded-lg">
+<span class="material-symbols-outlined" data-weight="fill">psychology</span>
+</span>
+                        Skill Gap Analysis
+                    </h3>
+<div class="space-y-8">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                {% for item in platforms %}
+                                <div class="bg-surface-container-lowest p-6 rounded-2xl border-l-4 border-tertiary shadow-sm">
+                                    <span class="text-xs font-bold text-tertiary tracking-widest uppercase block mb-2">Technical Gap</span>
+                                    <h4 class="text-lg font-bold mb-2">{{ item.skill }}</h4>
+                                    <p class="text-sm text-on-surface-variant leading-relaxed">This core skill is a requirement for this opportunity.</p>
+                                    <div class="mt-4 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                                        <div class="flex items-center gap-2 text-primary font-semibold text-sm">
+                                            <span class="material-symbols-outlined text-sm">school</span>
+                                            Recommended: {{ item.platform }}
+                                        </div>
+                                        <a href="{{ item.url }}" target="_blank" class="px-4 py-2 bg-primary text-on-primary text-xs font-bold rounded-lg hover:shadow-md transition-all text-center">Enroll Now</a>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="bg-surface-container-lowest p-6 rounded-2xl border-l-4 border-secondary shadow-sm">
+                                    <h4 class="text-lg font-bold mb-2">No Gaps Found</h4>
+                                    <p class="text-sm text-on-surface-variant leading-relaxed">You meet the technical requirements flawlessly.</p>
+                                </div>
+                                {% endfor %}
+                            </div>
+</div>
+</div>
+<!-- Abstract Texture -->
+<div class="absolute bottom-0 right-0 w-64 h-64 bg-tertiary/5 rounded-full blur-3xl -mr-20 -mb-20"></div>
+</div>
+<!-- Suggested Improvements -->
+<div class="bg-surface-container-lowest rounded-[2rem] p-8 lg:p-10 shadow-sm border border-outline-variant/10">
+<h3 class="font-headline text-2xl font-bold mb-8 flex items-center gap-3">
+<span class="p-2 bg-secondary/10 text-secondary rounded-lg">
+<span class="material-symbols-outlined">edit_note</span>
+</span>
+                    Suggested Improvements
+                </h3>
+<div class="space-y-6">
+    {% if analysis.feedback is mapping %}
+        {% for imp in analysis.feedback.improvements %}
+        <div class="flex items-start gap-3 text-sm">
+            <span class="material-symbols-outlined text-tertiary mt-0.5">warning</span>
+            <span>{{ imp }}</span>
+        </div>
+        {% endfor %}
+        {% for s in analysis.feedback.strengths %}
+        <div class="flex items-start gap-3 text-sm">
+            <span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
+            <span>{{ s }}</span>
+        </div>
+        {% endfor %}
+    {% endif %}
+    <div class="flex items-start gap-3 text-sm">
+        <span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
+        <span>Add quantifiable metrics to your roles (e.g., "Improved load times by 40%").</span>
+    </div>
+    <div class="flex items-start gap-3 text-sm">
+        <span class="material-symbols-outlined text-secondary mt-0.5">check_circle</span>
+        <span>Upload a GitHub repository link for skill verification.</span>
+    </div>
+</div>
+</div>
+</div>
+<!-- AI Insight Card -->
+<div class="mt-12 bg-surface-container-lowest p-8 rounded-[2rem] shadow-sm flex flex-col md:flex-row gap-8 items-center border-l-4 border-secondary">
+<div class="w-16 h-16 bg-secondary-container rounded-full flex items-center justify-center shrink-0 shadow-inner">
+<span class="material-symbols-outlined text-secondary text-3xl" data-weight="fill">lightbulb</span>
+</div>
+                    <div class="flex-grow">
+                        <h4 class="font-headline text-xl font-bold mb-2">Curator's Pro Tip</h4>
+                        <p class="text-on-surface-variant">Candidates with a <span class="text-on-secondary-fixed-variant font-bold">{{ analysis.match_percentage }}% score</span> typically reach <span class="font-bold text-on-background">85%+</span> within 3 weeks of following the Improvement Roadmap.</p>
+                    </div>
+<div class="shrink-0">
+<a class="text-primary font-bold hover:underline flex items-center gap-2" href="{{ url_for('roadmap', job_id=job_id) }}">
+                    Start Learning
+                    <span class="material-symbols-outlined">north_east</span>
+</a>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 mt-20">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 max-w-7xl mx-auto">
+<span class="font-['Inter'] text-xs text-slate-500">© 2024 The Intelligent Curator. Editorial Career Management.</span>
+<div class="flex gap-6 mt-4 md:mt-0">
+<a class="font-['Inter'] text-xs text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">Help Center</a>
+<a class="font-['Inter'] text-xs text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">API Documentation</a>
+</div>
+</div>
+</footer>
+</body></html>

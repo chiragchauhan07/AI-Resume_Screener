@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <title>AI Resume Builder | Nexus Talent</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                "colors": {
+                        "primary-container": "#2563eb",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "background": "#f7f9fb",
+                        "on-surface-variant": "#434655",
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#004ac6",
+                        "secondary": "#006c49"
+                },
+                "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"]
+                }
+              },
+            }
+          }
+    </script>
+    <style>
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+<header class="fixed top-0 z-50 w-full glass-nav shadow-sm">
+    <div class="flex justify-between items-center w-full px-6 py-3 h-16 max-w-7xl mx-auto">
+        <div class="flex items-center gap-8">
+            <a href="{{ url_for('dashboard') }}" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 transition-colors" title="Back">
+                <span class="material-symbols-outlined text-slate-600">arrow_back</span>
+            </a>
+            <span class="text-xl font-extrabold text-primary tracking-tighter font-headline"><a href="/">Nexus Talent</a></span>
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a class="text-slate-500 hover:text-blue-600 transition-colors" href="{{ url_for('dashboard') }}">Home</a>
+                <a class="text-slate-500 hover:text-blue-600 transition-colors" href="{{ url_for('roadmap_domains') }}">Career Roadmap</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="pt-24 pb-12 px-6 max-w-3xl mx-auto min-h-screen">
+    <section class="mb-10 text-center">
+        <div class="inline-flex items-center justify-center p-3 bg-primary/10 rounded-full mb-4">
+            <span class="material-symbols-outlined text-primary text-3xl">auto_awesome</span>
+        </div>
+        <h1 class="font-headline font-extrabold text-4xl tracking-tight mb-4 text-slate-900">AI Resume Generator</h1>
+        <p class="text-on-surface-variant">Fill in your key details below. Our AI will synthesize this information and create a beautifully formatted resume ready for top-tier companies.</p>
+    </section>
+
+    <form method="POST" action="{{ url_for('resume_builder') }}" class="bg-white p-8 rounded-3xl shadow-lg border border-slate-100 space-y-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+                <label class="block text-sm font-bold text-slate-700 mb-2">Full Name</label>
+                <input type="text" name="name" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="John Doe">
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-slate-700 mb-2">Target Domain</label>
+                <input type="text" name="domain" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="e.g. Software Engineering">
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-slate-700 mb-2">Email Address</label>
+                <input type="email" name="email" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="john@example.com">
+            </div>
+            <div>
+                <label class="block text-sm font-bold text-slate-700 mb-2">Phone Number</label>
+                <input type="tel" name="phone" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="+1 234 567 8900">
+            </div>
+        </div>
+
+        <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">Professional Summary</label>
+            <textarea name="summary" rows="3" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="A brief overview of your goals and background..."></textarea>
+        </div>
+
+        <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">Key Skills (Comma separated)</label>
+            <input type="text" name="skills" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="Python, React, System Design, Communication">
+        </div>
+
+        <div>
+            <label class="block text-sm font-bold text-slate-700 mb-2">Experience & Education Highlights</label>
+            <textarea name="experience" rows="4" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:ring-2 focus:ring-primary focus:border-primary transition-all text-sm" placeholder="List your key achievements, past roles, or degrees..."></textarea>
+        </div>
+
+        <button type="submit" class="w-full bg-primary text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
+            <span class="material-symbols-outlined">magic_button</span> Generate Resume
+        </button>
+    </form>
+</main>
+</body>
+</html>

@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+<title>Your Path to Backend Engineer | The Intelligent Curator</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#2563eb",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-secondary-container": "#00714d",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed": "#002113",
+                        "on-background": "#191c1e",
+                        "on-surface": "#191c1e",
+                        "tertiary-fixed": "#ffdad7",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#c3c6d7",
+                        "on-error": "#ffffff",
+                        "background": "#f7f9fb",
+                        "on-surface-variant": "#434655",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-tertiary-container": "#ffecea",
+                        "tertiary-fixed-dim": "#ffb3ad",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "secondary": "#006c49",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#dbe1ff",
+                        "outline": "#737686",
+                        "tertiary": "#ab0b1c",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-tint": "#0053db",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary-fixed": "#410004",
+                        "on-tertiary-fixed-variant": "#930013",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eceef0",
+                        "surface-container-low": "#f2f4f6",
+                        "primary": "#004ac6",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary-fixed": "#00174b",
+                        "surface-dim": "#d8dadc",
+                        "secondary-container": "#6cf8bb",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#cf2c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            line-height: 1;
+            text-transform: none;
+            letter-spacing: normal;
+            word-wrap: normal;
+            white-space: nowrap;
+            direction: ltr;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+
+        /* Morph view transition */
+        @view-transition { navigation: auto; }
+        body { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen">
+<!-- SideNavBar Shell -->
+<aside class="h-full w-64 fixed left-0 top-0 bg-slate-50 dark:bg-slate-950 flex flex-col h-screen p-4 space-y-2 z-40">
+<div class="mb-8 px-2 flex items-center gap-3">
+<div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-white" data-icon="psychology">psychology</span>
+</div>
+<div>
+<h2 class="text-lg font-bold text-slate-900 dark:text-slate-100">AI Curator</h2>
+<p class="text-[10px] uppercase tracking-widest text-slate-500 font-bold">Your Personal Agent</p>
+</div>
+</div>
+<nav class="space-y-1">
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-500 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="{{ url_for('dashboard') }}">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Home
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-500 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="map">map</span>
+                Career Roadmap
+            </a>
+<a class="flex items-center gap-3 px-3 py-2 text-slate-600 dark:text-slate-400 hover:text-blue-500 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="history">history</span>
+                History
+            </a>
+<a class="flex items-center gap-3 px-3 py-4 bg-white dark:bg-slate-900 text-blue-600 dark:text-blue-400 rounded-lg shadow-sm font-semibold transition-all duration-300 ease-in-out font-['Inter'] text-sm font-medium" href="#">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+                Improvement Path
+            </a>
+</nav>
+<div class="mt-auto p-4 bg-primary/5 rounded-2xl">
+<p class="text-xs text-slate-600 mb-3">Elevate your trajectory with AI-powered insights.</p>
+<button class="w-full py-2 bg-primary text-on-primary rounded-xl font-bold text-xs hover:opacity-90 transition-opacity">
+                Upgrade to Pro
+            </button>
+</div>
+</aside>
+<!-- Top Navigation Bar -->
+<header class="fixed top-0 left-64 right-0 bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl z-30 shadow-sm flex justify-between items-center px-6 py-3 h-16">
+<div class="flex items-center gap-4">
+    <a href="{{ url_for('not_selected', job_id=job_id) }}" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 transition-colors" title="Back">
+        <span class="material-symbols-outlined text-slate-600">arrow_back</span>
+    </a>
+    <span class="text-xl font-extrabold text-blue-700 dark:text-blue-500 tracking-tighter font-['Manrope']">The Intelligent Curator</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="hidden lg:flex items-center bg-slate-100 dark:bg-slate-800 rounded-full px-4 py-1.5 w-64">
+<span class="material-symbols-outlined text-slate-400 text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm w-full placeholder:text-slate-400" placeholder="Search path..." type="text"/>
+</div>
+<div class="flex items-center gap-3">
+<button class="p-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-slate-500 hover:bg-slate-50 dark:hover:bg-slate-800/50 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User Avatar" class="w-8 h-8 rounded-full border-2 border-primary/20" data-alt="Close-up portrait of a professional man with short hair and a warm expression, soft natural office lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBcxF57_UPsgzAV0unhrX7wZ1Yww9hcGi8-yIj5vAZiCFU5k0SUZwOv84tsJsCx25kNhfLd9ZoMxLIapeGMbOafwKrq3EgTNdbz9D6hqpUlR6_nEovSBtYlqjCpjDjlJaIo_KbZe8Zy7SCpWDA_Um5CpWnbctog3_7-65Nl7EpWB4QXajgUI0tjqzZUG2mbVQ9EEhtjIU-QYda826IozqpCeLsgtOmezfCnmMb53iLLpypsQfDFQjc8gWc2cITIQlVVVy5FdEFL5vHZ"/>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<main class="ml-64 pt-24 pb-12 px-8 max-w-7xl mx-auto">
+<!-- Hero Section & Progress -->
+<section class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-8">
+<div class="max-w-2xl">
+<nav class="flex items-center gap-2 text-sm text-on-surface-variant mb-4">
+<span class="hover:text-primary cursor-pointer transition-colors">Learning Path</span>
+<span class="material-symbols-outlined text-[12px]" data-icon="chevron_right">chevron_right</span>
+<span class="font-semibold text-primary">Backend Specialization</span>
+</nav>
+<h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-on-surface mb-4">
+                        Your Path to {{ job.title }} at <span class="text-secondary">{{ job.company }}</span>
+</h1>
+<p class="text-lg text-on-surface-variant leading-relaxed">
+                        We've analyzed the job requirements at {{ job.company }} and compared them with your current profile. Follow this curated sequence to bridge the gap.
+                    </p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-2xl flex flex-col items-center justify-center min-w-[180px]">
+<div class="relative w-20 h-20 flex items-center justify-center mb-2">
+<svg class="w-full h-full -rotate-90">
+<circle class="text-surface-variant" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-width="6"></circle>
+<circle class="text-secondary" cx="40" cy="40" fill="transparent" r="36" stroke="currentColor" stroke-dasharray="226" stroke-dashoffset="147" stroke-width="6"></circle>
+</svg>
+<span class="absolute text-xl font-bold font-headline">35%</span>
+</div>
+<span class="text-xs font-bold uppercase tracking-widest text-on-surface-variant">Overall Progress</span>
+</div>
+</div>
+<!-- Global Progress Bar -->
+<div class="w-full h-3 bg-surface-container-highest rounded-full overflow-hidden flex gap-1">
+<div class="h-full w-1/3 bg-secondary rounded-r-sm"></div>
+<div class="h-full w-1/12 bg-secondary-container opacity-50"></div>
+<div class="h-full flex-1"></div>
+</div>
+</section>
+<!-- Asymmetric Layout: Roadmap Content & Insights -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                            <!-- Roadmap Steps (Col 1-8) -->
+                            <div class="lg:col-span-8 space-y-12 relative">
+                                <!-- Vertical Progress Line -->
+                                <div class="absolute left-6 top-8 bottom-8 w-0.5 bg-gradient-to-b from-secondary via-surface-variant to-surface-variant hidden md:block"></div>
+                                
+                                {% for item in platforms %}
+                                <div class="relative flex flex-col md:flex-row gap-8 group">
+                                    <div class="z-10 w-12 h-12 rounded-full {% if loop.index == 1 %}bg-secondary{% else %}bg-surface-container-highest{% endif %} flex items-center justify-center shrink-0 shadow-sm border-4 border-surface">
+                                        {% if loop.index == 1 %}
+                                        <span class="material-symbols-outlined text-white text-xl" data-icon="check" style="font-variation-settings: 'FILL' 0, 'wght' 700;">check</span>
+                                        {% else %}
+                                        <span class="text-sm font-bold">0{{ loop.index }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="flex-1 bg-surface-container-lowest rounded-2xl p-8 shadow-[0px_24px_48px_-12px_rgba(25,28,30,0.06)] {% if loop.index == 1 %}border-l-4 border-secondary/10{% else %}border-l-4 border-secondary{% endif %} transition-transform hover:-translate-y-1">
+                                        <div class="flex justify-between items-start mb-4">
+                                            <span class="inline-flex items-center px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-wider bg-error-container text-on-error-container">
+                                                Missing Skill
+                                            </span>
+                                            <span class="text-xs font-medium text-on-surface-variant">Recommended</span>
+                                        </div>
+                                        <h3 class="text-2xl font-bold mb-3">Learn {{ item.skill }}</h3>
+                                        <p class="text-on-surface-variant mb-6 leading-relaxed">
+                                            {{ job.company }}'s infrastructure relies on this technology. Gaining proficiency in {{ item.skill }} using {{ item.platform }} is the single most important technical step for your transition.
+                                        </p>
+                                        <div class="flex flex-wrap gap-4 items-center">
+                                            <a href="{{ item.url }}" target="_blank" class="inline-flex items-center gap-2 bg-primary text-on-primary px-5 py-2.5 rounded-xl font-bold transition-all hover:scale-105 active:scale-95">
+                                                <span class="material-symbols-outlined text-lg" data-icon="school">school</span>
+                                                Explore on {{ item.platform }}
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% else %}
+                                <div class="relative flex flex-col gap-8 group">
+                                    <div class="flex-1 bg-surface-container-lowest rounded-2xl p-8 shadow-[0px_24px_48px_-12px_rgba(25,28,30,0.06)] border-l-4 border-secondary/10 text-center">
+                                        <h3 class="text-2xl font-bold mb-3">You're All Set!</h3>
+                                        <p class="text-on-surface-variant leading-relaxed">You meet all technical requirements for this role. Consider focusing on interview preparation instead.</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+<!-- Insights Column (Col 9-12) -->
+<div class="lg:col-span-4 space-y-6">
+<div class="bg-surface-container-low rounded-3xl p-8 sticky top-24">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary" data-icon="lightbulb">lightbulb</span>
+<h4 class="text-lg font-bold">Curator Insights</h4>
+</div>
+<div class="space-y-6">
+<div class="p-4 bg-white/50 backdrop-blur-sm rounded-2xl">
+<p class="text-xs font-bold text-primary uppercase tracking-widest mb-1">Company Culture</p>
+<p class="text-sm text-on-surface-variant">{{ job.company }} prioritizes "Systems Thinking". Mention your work on infrastructure scalability in your project brief.</p>
+</div>
+<div class="p-4 bg-white/50 backdrop-blur-sm rounded-2xl border-l-4 border-secondary">
+<p class="text-xs font-bold text-secondary uppercase tracking-widest mb-1">Hiring Speed</p>
+<p class="text-sm text-on-surface-variant">Recent hires for this role completed the process in <span class="font-bold text-on-surface">18 days</span>. Accelerate Step 1 to be ready for the Q3 window.</p>
+</div>
+<div class="pt-4 mt-6 border-t border-surface-variant">
+<h5 class="text-xs font-bold uppercase tracking-widest text-on-surface-variant mb-4">Recommended Mentors</h5>
+<div class="space-y-4">
+<div class="flex items-center gap-3">
+<img alt="Mentor" class="w-10 h-10 rounded-full" data-alt="Headshot of a middle-aged tech professional with glasses and a friendly, knowledgeable look" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDA3pv1eVdtawvsOKr80d2pt3s-HK3pIbdklELGrejWS2hDNHDupqlK3go5DJ7tpKLplHFUYN_akG77RjHQvsupZjBBtuO3HdyCUZTtXmb9Nw15TcIGhCqmNyLFzcAr4jqVmTOuxtuW86SZn0CoimmDEtPkWv4-J98jAH6lk9gfnHKuCyJs0OyYqsm3VfBJaPUzsvjS0MCO2e20n79XDm-2wso6oXoT2nbUlky9XBM1Z3wxm3nJs8eYPJ0DOfzF757o8ozR1QK88wRD"/>
+<div class="flex-1">
+<p class="text-sm font-bold">David Chen</p>
+<p class="text-[10px] text-on-surface-variant">Lead Backend at {{ job.company }}</p>
+</div>
+<button class="p-2 hover:bg-primary/10 rounded-full transition-colors text-primary">
+<span class="material-symbols-outlined" data-icon="send">send</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<button class="w-full mt-8 py-3 bg-white border border-outline-variant/30 text-on-surface rounded-xl font-bold text-sm hover:bg-surface transition-colors">
+                        Add Custom Step
+                    </button>
+</div>
+</div>
+</div>
+
+<!-- AI Domain Career Pathway Recommender -->
+<section class="mt-20 pt-16 border-t border-slate-200">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-8 gap-6">
+        <div>
+            <h2 class="text-3xl font-extrabold text-on-surface mb-2 tracking-tight">Industry Pathways</h2>
+            <p class="text-on-surface-variant max-w-2xl text-lg">Select a core domain to view AI-recommended skills needed to apply perfectly into top decile global companies.</p>
+        </div>
+        <select id="domainSelect" class="bg-surface-container-high border-none rounded-xl text-on-surface font-bold px-6 py-3 cursor-pointer hover:bg-surface-dim focus:ring-2 focus:ring-primary shadow-sm" onchange="updateDomainPathways()">
+            {% for dom_id, dom_info in domain_data.items() %}
+            <option value="{{ dom_id }}" {% if loop.first %}selected{% endif %}>{{ dom_info.title }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="bg-surface-container-low rounded-3xl p-8 md:p-12 border border-outline-variant/10 shadow-sm relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-8 opacity-5">
+            <span class="material-symbols-outlined text-9xl">explore</span>
+        </div>
+        <div class="relative z-10" id="domainContent">
+            <!-- Dynamically populated by JS -->
+        </div>
+    </div>
+</section>
+
+</main>
+<script>
+const DOMAIN_DATA = {{ domain_data | tojson | safe }};
+
+function updateDomainPathways() {
+    const key = document.getElementById('domainSelect').value;
+    const data = DOMAIN_DATA[key];
+    const container = document.getElementById('domainContent');
+    
+    container.innerHTML = `
+        <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined text-secondary bg-secondary/10 p-2 rounded-xl">target</span>
+            <h3 class="text-2xl font-bold">${data.title}</h3>
+        </div>
+        <p class="text-on-surface-variant text-lg mb-8 max-w-3xl">${data.desc}</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <div>
+                <h4 class="text-sm font-extrabold text-slate-400 uppercase tracking-widest mb-4">Top Companies Looking For This</h4>
+                <div class="flex flex-wrap gap-2">
+                    ${data.companies.map(c => `<span class="bg-white border border-slate-200 text-slate-600 px-4 py-2 rounded-full font-bold text-sm shadow-sm">${c}</span>`).join('')}
+                </div>
+            </div>
+            <div>
+                <h4 class="text-sm font-extrabold text-primary uppercase tracking-widest mb-4">Curriculum to Master</h4>
+                <div class="space-y-3">
+                    ${data.skills.map(s => `
+                        <div class="flex items-center gap-3 p-3 bg-white rounded-xl shadow-sm border border-slate-100">
+                            <span class="material-symbols-outlined text-primary">menu_book</span>
+                            <span class="font-semibold text-slate-700">${s}</span>
+                        </div>
+                    `).join('')}
+                </div>
+            </div>
+        </div>
+    `;
+}
+
+// Initialize on load
+document.addEventListener('DOMContentLoaded', updateDomainPathways);
+</script>
+<!-- Footer -->
+<footer class="w-full border-t border-slate-100 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 mt-12">
+<div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 max-w-7xl mx-auto">
+<p class="font-['Inter'] text-xs text-slate-500 mb-4 md:mb-0">
+                © 2024 The Intelligent Curator. Editorial Career Management.
+            </p>
+<div class="flex gap-6">
+<a class="font-['Inter'] text-xs text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">Privacy Policy</a>
+<a class="font-['Inter'] text-xs text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">Terms of Service</a>
+<a class="font-['Inter'] text-xs text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">Help Center</a>
+<a class="font-['Inter'] text-xs text-slate-400 dark:text-slate-500 hover:text-slate-900 dark:hover:text-slate-100 transition-colors" href="#">API Documentation</a>
+</div>
+</div>
+</footer>
+</body></html>

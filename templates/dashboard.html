@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <title>Nexus Talent | Career Breakthrough</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#2563eb",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-secondary-container": "#00714d",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed": "#002113",
+                        "on-background": "#191c1e",
+                        "on-surface": "#191c1e",
+                        "tertiary-fixed": "#ffdad7",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#c3c6d7",
+                        "on-error": "#ffffff",
+                        "background": "#f7f9fb",
+                        "on-surface-variant": "#434655",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-tertiary-container": "#ffecea",
+                        "tertiary-fixed-dim": "#ffb3ad",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "secondary": "#006c49",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#dbe1ff",
+                        "outline": "#737686",
+                        "tertiary": "#ab0b1c",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-tint": "#0053db",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary-fixed": "#410004",
+                        "on-tertiary-fixed-variant": "#930013",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eceef0",
+                        "surface-container-low": "#f2f4f6",
+                        "primary": "#004ac6",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary-fixed": "#00174b",
+                        "surface-dim": "#d8dadc",
+                        "secondary-container": "#6cf8bb",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#cf2c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            }
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+        }
+
+        .text-gradient {
+            background: linear-gradient(135deg, #004ac6 0%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Premium Slide Transition */
+        @view-transition {
+            navigation: auto;
+        }
+
+        ::view-transition-old(root) {
+            animation: 0.4s cubic-bezier(0.4, 0, 0.2, 1) both slide-out;
+        }
+
+        ::view-transition-new(root) {
+            animation: 0.4s cubic-bezier(0.4, 0, 0.2, 1) both slide-in;
+        }
+
+        @keyframes slide-in {
+            from {
+                transform: translateX(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slide-out {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+
+            to {
+                transform: translateX(-20px);
+                opacity: 0;
+            }
+        }
+
+        body {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface antialiased">
+    <!-- Top Navigation Bar -->
+    <header class="fixed top-0 z-50 w-full glass-nav shadow-sm">
+        <div class="flex justify-between items-center w-full px-6 py-3 h-16 max-w-7xl mx-auto">
+            <div class="flex items-center gap-8">
+                <span class="text-xl font-extrabold text-primary tracking-tighter font-headline">Nexus Talent</span>
+                <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                    <a class="text-blue-700 font-bold border-b-2 border-blue-600 pb-1"
+                        href="{{ url_for('dashboard') }}">Home</a>
+                    <a class="text-slate-500 hover:text-blue-600 transition-colors"
+                        href="{{ url_for('roadmap_domains') }}">Career Roadmap</a>
+                </nav>
+            </div>
+            <div class="flex items-center gap-4 flex-1 max-w-md mx-8">
+                <div class="relative w-full">
+                    <span
+                        class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm">search</span>
+                    <input id="searchInput" onkeyup="filterJobs()"
+                        class="w-full pl-10 pr-4 py-2 bg-surface-container-highest border-none rounded-xl text-sm focus:ring-2 focus:ring-primary/40 focus:bg-white transition-all"
+                        placeholder="Search roles or companies..." type="text" />
+                </div>
+            </div>
+            <div class="flex items-center gap-4">
+                <button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors relative">
+                    <span class="material-symbols-outlined">notifications</span>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-error rounded-full"></span>
+                </button>
+                <button class="p-2 text-slate-500 hover:bg-slate-50 rounded-full transition-colors">
+                    <span class="material-symbols-outlined">settings</span>
+                </button>
+                <div class="h-8 w-8 rounded-full overflow-hidden border border-outline-variant/30">
+                    <img alt="User Profile Avatar"
+                        data-alt="Close-up portrait of a professional man with a kind smile, clean corporate headshot with soft studio lighting"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuApfksSAsx022Kkl8MJ5RXN4G9yhgMAcYKd9da9nbFSGhU--7nTDHnkV-Woi8XRto40dkMb2njRtIp_nEKyYYEdWH1-RKP1cI_ZTJhx1tdeftjlOt10gJrwr1QvsJx2b9VoVEQgsP1IKp3HhjuVNnV1gVFrH6x3khZzOKcGhKBRv8RuY2cS-RavmVU8gQbyM61V2B6D1lYiC4RoU_R1qcs-uWWaZpOleLhNXSxzlUWVk8V_4n86_ab445YTj0dFT412-LP4Nlg4CLfb" />
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="pt-24 pb-12 px-6 max-w-7xl mx-auto">
+        <!-- Hero Section -->
+        <section class="mb-16 relative">
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <div
+                        class="inline-flex items-center gap-2 px-3 py-1 bg-secondary-container/30 text-on-secondary-container rounded-full">
+                        <span class="material-symbols-outlined text-[18px]"
+                            style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                        <span class="text-xs font-semibold uppercase tracking-wider">AI-Enhanced Discovery</span>
+                    </div>
+                    <h1
+                        class="font-headline font-extrabold text-5xl lg:text-6xl tracking-tight text-on-surface leading-[1.1]">
+                        Find your next career <span class="text-gradient">breakthrough</span> with AI insights.
+                    </h1>
+                    <p class="text-lg text-on-surface-variant max-w-lg leading-relaxed">
+                        Nexus Talent uses advanced skill-mapping to connect you with opportunities that align with your
+                        unique trajectory.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="{{ url_for('companies') }}"
+                            class="px-8 py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl font-semibold shadow-lg shadow-primary/20 hover:scale-[1.02] active:scale-[0.98] transition-all inline-block text-center">
+                            Get Started
+                        </a>
+                        <a href="{{ url_for('companies') }}"
+                            class="px-8 py-3 bg-surface-container-high text-on-surface rounded-xl font-semibold hover:bg-surface-dim transition-all inline-block text-center">
+                            Explore Roles
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-primary/5 blur-3xl rounded-full"></div>
+                        <img alt="Modern office interior with glass walls" class="relative rounded-3xl shadow-2xl z-10"
+                            data-alt="Blurred modern architectural office space with clean lines, glass partitions, and warm natural sunlight through large windows"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAmdI9fNmpBpwPtyZ58toS5fxvQtAaAKZoaZftrc6uyp3kTwRObhbtSQovbna6RwE1GLJClVncmLms8X1SLK9ifkRsv8hdKfQToFZaCX6SlS_SkzetWZGWPBbxgcOwVvg-Zy9tQ1H-bdK07Bo2jqS4a5v-ovbO4YUlOe_eOj9tam3FaMU7FIAtDCFu2R1CM_918AchOmRVgpTEUp23skU4kKVeipS5B8kuzhNtd-yq3UobkMSme5J31nkhaBw1F6rPFgq3q-k7o8UbR" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+
+        <!-- Job Grid -->
+        <section>
+            <div class="flex justify-between items-end mb-8">
+                <div>
+                    <h2 class="font-headline font-bold text-2xl text-on-surface">Curated Opportunities</h2>
+                    <p class="text-on-surface-variant">Recommended based on your Skill Roadmap</p>
+                </div>
+                <a href="{{ url_for('companies') }}"
+                    class="flex items-center gap-2 text-primary font-semibold hover:gap-3 transition-all">
+                    View all roles <span class="material-symbols-outlined">arrow_forward</span>
+                </a>
+            </div>
+            <div id="job-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {% for job_id, job in jobs.items() %}
+                <!-- Job Card -->
+                <div class="job-card bg-surface-container-lowest p-6 rounded-2xl shadow-[0px_24px_48px_-12px_rgba(25,28,30,0.06)] hover:translate-y-[-4px] transition-transform flex flex-col h-full border border-slate-100/50"
+                    data-title="{{ job.title | lower }}" data-company="{{ job.company | lower }}">
+                    <!-- Header: Logo box and Hiring Badge -->
+                    <div class="flex justify-between items-start mb-6 w-full">
+                        <div class="w-14 h-14 rounded-xl bg-white flex items-center justify-center overflow-hidden flex-shrink-0 border border-slate-100 p-2 shadow-sm">
+                            <img src="{{ url_for('static', filename='images/' + COMPANY_LOGOS.get(job.company.lower(), 'amazon.png')) }}"
+                                onerror="this.src='{{ url_for('static', filename='images/amazon.png') }}'; this.nextElementSibling.style.display='flex';"
+                                class="w-full h-full object-contain" alt="{{ job.company }} logo">
+                            <span class="absolute inset-0 flex items-center justify-center hidden bg-slate-50 text-slate-400 text-xs font-bold uppercase">{{ job.company[:2] }}</span>
+                        </div>
+                        <span class="px-3 py-1 bg-secondary/10 text-secondary text-[10px] font-bold uppercase tracking-wider rounded-full">Hiring</span>
+                    </div>
+
+                    <!-- Content Section -->
+                    <div class="flex-grow flex flex-col">
+                        <h3 class="font-bold text-lg mb-1 text-on-surface line-clamp-2 leading-tight">{{ job.title }}</h3>
+                        <p class="text-xs font-bold text-primary uppercase tracking-tight mb-4">{{ job.company }}</p>
+
+                        <div class="inline-flex items-center gap-1.5 text-[11px] text-on-surface-variant font-medium mb-6 bg-slate-50 w-fit px-2 py-1 rounded-lg">
+                            <span class="material-symbols-outlined text-[15px]">location_on</span>
+                            {{ job.location | default('Remote') }}
+                        </div>
+
+                        <p class="text-sm text-on-surface-variant leading-relaxed mb-6 line-clamp-3">
+                            {{ job.description }}
+                        </p>
+                    </div>
+
+                    <!-- Footer Section -->
+                    <div class="pt-6 border-t border-slate-50 flex items-center justify-between mt-auto">
+                        <div class="flex flex-col">
+                            <span class="text-[10px] text-slate-400 font-bold uppercase tracking-tighter">Budget</span>
+                            <span class="text-sm font-extrabold text-on-surface">{{ job.salary | default('Competitive') }}</span>
+                        </div>
+                        <a href="{{ url_for('job_detail', job_id=job_id) }}"
+                            class="px-6 py-2 bg-primary text-on-primary font-bold rounded-xl shadow-md shadow-primary/20 hover:scale-105 transition-all text-sm">View Details</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- See More Button -->
+            <div class="mt-12 text-center">
+                <a href="{{ url_for('companies') }}" 
+                   class="inline-flex items-center gap-3 px-10 py-4 bg-white border-2 border-slate-100 text-primary font-bold rounded-2xl hover:border-primary/20 hover:bg-slate-50 transition-all shadow-sm group">
+                    Explore More Opportunities 
+                    <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Resume Builder Promo -->
+        <section
+            class="mt-20 bg-primary/5 rounded-3xl p-12 text-center relative overflow-hidden border border-primary/10">
+            <div class="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+            <div class="relative z-10 max-w-2xl mx-auto">
+                <h2 class="font-headline font-bold text-3xl text-on-surface mb-4">Don't have a resume yet?</h2>
+                <p class="text-on-surface-variant mb-8 leading-relaxed">
+                    No worries! Provide your details and our AI will generate a professional resume for you instantly in
+                    PDF or DOCX format. Get ready for your dream role!
+                </p>
+                <a href="{{ url_for('resume_builder') }}"
+                    class="inline-flex items-center gap-2 px-8 py-4 bg-primary text-on-primary font-bold rounded-xl shadow-xl hover:-translate-y-1 transition-transform">
+                    <span class="material-symbols-outlined">description</span>
+                    Build My Resume Now
+                </a>
+            </div>
+        </section>
+
+    </main>
+    <footer class="w-full border-t border-slate-100 dark:border-slate-800 bg-slate-50 mt-12">
+        <div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 max-w-7xl mx-auto">
+            <div class="text-xs text-slate-500 font-['Inter']">
+                © 2024 The Intelligent Curator. Editorial Career Management.
+            </div>
+            <div class="flex space-x-6 mt-4 md:mt-0">
+                <a class="text-slate-400 hover:text-slate-900 transition-colors text-xs" href="#">Privacy Policy</a>
+                <a class="text-slate-400 hover:text-slate-900 transition-colors text-xs" href="#">Terms of Service</a>
+                <a class="text-slate-400 hover:text-slate-900 transition-colors text-xs" href="#">Help Center</a>
+                <a class="text-slate-400 hover:text-slate-900 transition-colors text-xs" href="#">API Documentation</a>
+            </div>
+        </div>
+    </footer>
+    <!-- FAB for AI Chat -->
+    <button
+        class="fixed bottom-8 right-8 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center hover:scale-110 active:scale-95 transition-all z-40 group">
+        <span class="material-symbols-outlined text-3xl group-hover:rotate-12 transition-transform">bolt</span>
+    </button>
+    <script>
+        function filterJobs() {
+            var input = document.getElementById('searchInput').value.toLowerCase();
+            var cards = document.getElementsByClassName('job-card');
+
+            for (var i = 0; i < cards.length; i++) {
+                var title = cards[i].getAttribute('data-title');
+                var company = cards[i].getAttribute('data-company');
+                if (title.indexOf(input) > -1 || company.indexOf(input) > -1) {
+                    cards[i].style.display = "";
+                } else {
+                    cards[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

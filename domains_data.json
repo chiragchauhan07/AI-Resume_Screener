@@ -1,0 +1,289 @@
+{
+    "domain_data": [
+        {
+            "domain": "Technology",
+            "companies": [
+                "Google",
+                "Microsoft",
+                "Amazon",
+                "Adobe",
+                "Atlassian"
+            ],
+            "roles": [
+                {
+                    "title": "Software Engineer",
+                    "salary_range_lpa": "12-40",
+                    "skills": [
+                        "DSA",
+                        "Java/Python",
+                        "System Design",
+                        "DBMS",
+                        "OS"
+                    ]
+                },
+                {
+                    "title": "Backend Developer",
+                    "salary_range_lpa": "10-35",
+                    "skills": [
+                        "Node.js",
+                        "Java",
+                        "APIs",
+                        "Microservices",
+                        "Databases"
+                    ]
+                }
+            ]
+        },
+        {
+            "domain": "AI/ML",
+            "companies": [
+                "Google",
+                "Microsoft",
+                "Nvidia",
+                "Amazon",
+                "Meta"
+            ],
+            "roles": [
+                {
+                    "title": "Machine Learning Engineer",
+                    "salary_range_lpa": "15-40",
+                    "skills": [
+                        "Python",
+                        "TensorFlow",
+                        "PyTorch",
+                        "ML Algorithms",
+                        "Data Structures"
+                    ]
+                },
+                {
+                    "title": "AI Engineer",
+                    "salary_range_lpa": "18-45",
+                    "skills": [
+                        "Deep Learning",
+                        "NLP",
+                        "Transformers",
+                        "LLMs",
+                        "MLOps"
+                    ]
+                }
+            ]
+        },
+        {
+            "domain": "Data Science",
+            "companies": [
+                "Mu Sigma",
+                "Fractal Analytics",
+                "Amazon",
+                "Google",
+                "Flipkart"
+            ],
+            "roles": [
+                {
+                    "title": "Data Scientist",
+                    "salary_range_lpa": "12-35",
+                    "skills": [
+                        "Python",
+                        "SQL",
+                        "Statistics",
+                        "Machine Learning",
+                        "Data Visualization"
+                    ]
+                },
+                {
+                    "title": "Data Analyst",
+                    "salary_range_lpa": "6-20",
+                    "skills": [
+                        "Excel",
+                        "SQL",
+                        "Power BI",
+                        "Python"
+                    ]
+                }
+            ]
+        },
+        {
+            "domain": "Finance",
+            "companies": [
+                "Goldman Sachs",
+                "JP Morgan",
+                "Morgan Stanley",
+                "Deloitte",
+                "EY"
+            ],
+            "roles": [
+                {
+                    "title": "Investment Banker",
+                    "salary_range_lpa": "20-40",
+                    "skills": [
+                        "Finance Modeling",
+                        "Excel",
+                        "Valuation",
+                        "Economics"
+                    ]
+                },
+                {
+                    "title": "Financial Analyst",
+                    "salary_range_lpa": "6-15",
+                    "skills": [
+                        "Excel",
+                        "Accounting",
+                        "Financial Analysis",
+                        "SQL"
+                    ]
+                }
+            ]
+        },
+        {
+            "domain": "Consulting",
+            "companies": [
+                "McKinsey",
+                "BCG",
+                "Bain",
+                "Deloitte",
+                "PwC"
+            ],
+            "roles": [
+                {
+                    "title": "Business Analyst",
+                    "salary_range_lpa": "10-25",
+                    "skills": [
+                        "Problem Solving",
+                        "Excel",
+                        "Case Studies",
+                        "Communication"
+                    ]
+                },
+                {
+                    "title": "Consultant",
+                    "salary_range_lpa": "18-50",
+                    "skills": [
+                        "Strategy",
+                        "Analytics",
+                        "Presentation",
+                        "Business Thinking"
+                    ]
+                }
+            ]
+        },
+        {
+            "domain": "Product Management",
+            "companies": [
+                "Google",
+                "Amazon",
+                "Flipkart",
+                "Swiggy",
+                "Zomato"
+            ],
+            "roles": [
+                {
+                    "title": "Product Manager",
+                    "salary_range_lpa": "12-40",
+                    "skills": [
+                        "Product Thinking",
+                        "SQL",
+                        "Analytics",
+                        "User Research",
+                        "Roadmapping"
+                    ]
+                }
+            ]
+        },
+        {
+            "domain": "Design",
+            "companies": [
+                "Adobe",
+                "Zomato",
+                "Swiggy",
+                "Paytm",
+                "Flipkart"
+            ],
+            "roles": [
+                {
+                    "title": "UI/UX Designer",
+                    "salary_range_lpa": "6-20",
+                    "skills": [
+                        "Figma",
+                        "User Research",
+                        "Wireframing",
+                        "Prototyping"
+                    ]
+                },
+                {
+                    "title": "Product Designer",
+                    "salary_range_lpa": "10-25",
+                    "skills": [
+                        "Design Thinking",
+                        "UI/UX",
+                        "Interaction Design"
+                    ]
+                }
+            ]
+        },
+        {
+            "domain": "Cybersecurity",
+            "companies": [
+                "Cisco",
+                "IBM",
+                "TCS",
+                "Infosys",
+                "Wipro"
+            ],
+            "roles": [
+                {
+                    "title": "Security Analyst",
+                    "salary_range_lpa": "8-25",
+                    "skills": [
+                        "Networking",
+                        "Ethical Hacking",
+                        "Linux",
+                        "Security Tools"
+                    ]
+                }
+            ]
+        },
+        {
+            "domain": "Cloud Computing",
+            "companies": [
+                "Amazon (AWS)",
+                "Microsoft (Azure)",
+                "Google Cloud",
+                "Oracle"
+            ],
+            "roles": [
+                {
+                    "title": "Cloud Engineer",
+                    "salary_range_lpa": "10-30",
+                    "skills": [
+                        "AWS",
+                        "Azure",
+                        "Docker",
+                        "Kubernetes",
+                        "Linux"
+                    ]
+                }
+            ]
+        },
+        {
+            "domain": "Marketing",
+            "companies": [
+                "Unilever",
+                "P&G",
+                "Google",
+                "Meta",
+                "Zomato"
+            ],
+            "roles": [
+                {
+                    "title": "Digital Marketing Specialist",
+                    "salary_range_lpa": "5-15",
+                    "skills": [
+                        "SEO",
+                        "SEM",
+                        "Social Media",
+                        "Analytics"
+                    ]
+                }
+            ]
+        }
+    ]
+}

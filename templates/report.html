@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <title>Nexus Talent - Analysis Report for {{ job.company }}</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; color: #1a1a1a; line-height: 1.6; margin: 0; padding: 40px; background-color: #f7f9fb; }
+        .container { max-w-[800px]; margin: 0 auto; background: white; padding: 60px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+        .header { border-bottom: 2px solid #eaebec; padding-bottom: 20px; margin-bottom: 30px; display: flex; justify-content: space-between; align-items: center; }
+        .title { margin: 0; font-size: 28px; color: #004ac6; }
+        .score-box { background: {% if analysis.selected %}#e6fbef{% else %}#fff0f0{% endif %}; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid {% if analysis.selected %}#34d399{% else %}#fca5a5{% endif %}; }
+        .score { font-size: 48px; font-weight: 800; margin: 0; color: {% if analysis.selected %}#059669{% else %}#dc2626{% endif %}; }
+        .score-label { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #64748b; font-weight: bold; }
+        h3 { margin-top: 40px; color: #334155; border-bottom: 1px solid #e2e8f0; padding-bottom: 10px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 12px; }
+        .match { color: #059669; font-weight: 600; }
+        .gap { color: #dc2626; font-weight: 600; }
+        .footer { margin-top: 60px; text-align: center; color: #94a3b8; font-size: 12px; border-top: 1px solid #eaebec; padding-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <h1 class="title">AI Resonance Report</h1>
+                <p style="margin: 5px 0 0 0; color: #64748b; font-weight: 500;">Target Role: {{ job.title }} @ {{ job.company }}</p>
+                <p style="margin: 5px 0 0 0; font-size: 14px;">Location: {{ job.location }} | Salary Target: {{ job.salary }}</p>
+            </div>
+            <div class="score-box">
+                <p class="score">{{ analysis.match_percentage }}%</p>
+                <p class="score-label">Alignment Score</p>
+            </div>
+        </div>
+
+        <div style="margin-bottom: 30px;">
+            <p><strong>Executive Summary:</strong> Based on the parsing vectors executed against the technical requirements for {{ job.company }}, your structural profile resulted in a <strong>{% if analysis.selected %}Strong{% else %}Moderate{% endif %} Match</strong>. Expand upon the targeted gaps outlined below before proceeding to the formal application phase.</p>
+        </div>
+
+        <h3>Verified Strong Competencies</h3>
+        <ul>
+            {% for skill in analysis.matched_skills %}
+            <li><span class="match">✓ {{ skill }}</span> - Successfully mapped to applicant history.</li>
+            {% else %}
+            <li>No core distinct skills directly matched the target matrix.</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Identified Skill Gaps & Recommended Actions</h3>
+        <ul>
+            {% for item in platforms %}
+            <li><span class="gap">✗ {{ item.skill }}</span> - Not found in resume history.<br>
+            <em style="color:#64748b; font-size: 14px;">Recommended Action: Follow <a href="{{ item.url }}">{{ item.platform }}</a> path logic to bridge gap.</em></li>
+            {% else %}
+            <li><span class="match">Excellent:</span> No critical skill gaps identified across the required technological stack.</li>
+            {% endfor %}
+        </ul>
+
+        <div class="footer">
+            <p>Report Generated Autonomously by Nexus AI • {{ job.domain }} Profile</p>
+        </div>
+    </div>
+</body>
+</html>

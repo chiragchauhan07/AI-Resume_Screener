@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#2563eb",
+                        "on-primary": "#ffffff",
+                        "on-secondary-fixed-variant": "#005236",
+                        "on-secondary-container": "#00714d",
+                        "secondary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed": "#002113",
+                        "on-background": "#191c1e",
+                        "on-surface": "#191c1e",
+                        "tertiary-fixed": "#ffdad7",
+                        "inverse-primary": "#b4c5ff",
+                        "on-primary-container": "#eeefff",
+                        "outline-variant": "#c3c6d7",
+                        "on-error": "#ffffff",
+                        "background": "#f7f9fb",
+                        "on-surface-variant": "#434655",
+                        "primary-fixed-dim": "#b4c5ff",
+                        "secondary-fixed": "#6ffbbe",
+                        "on-tertiary-container": "#ffecea",
+                        "tertiary-fixed-dim": "#ffb3ad",
+                        "on-error-container": "#93000a",
+                        "on-tertiary": "#ffffff",
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-variant": "#e0e3e5",
+                        "secondary": "#006c49",
+                        "inverse-surface": "#2d3133",
+                        "surface-container-highest": "#e0e3e5",
+                        "error": "#ba1a1a",
+                        "primary-fixed": "#dbe1ff",
+                        "outline": "#737686",
+                        "tertiary": "#ab0b1c",
+                        "on-primary-fixed-variant": "#003ea8",
+                        "surface-tint": "#0053db",
+                        "surface-bright": "#f7f9fb",
+                        "inverse-on-surface": "#eff1f3",
+                        "on-tertiary-fixed": "#410004",
+                        "on-tertiary-fixed-variant": "#930013",
+                        "error-container": "#ffdad6",
+                        "surface-container": "#eceef0",
+                        "surface-container-low": "#f2f4f6",
+                        "primary": "#004ac6",
+                        "surface-container-high": "#e6e8ea",
+                        "on-primary-fixed": "#00174b",
+                        "surface-dim": "#d8dadc",
+                        "secondary-container": "#6cf8bb",
+                        "on-secondary": "#ffffff",
+                        "tertiary-container": "#cf2c30"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3 { font-family: 'Manrope', sans-serif; }
+        
+        /* Premium Slide Transition */
+        @view-transition { navigation: auto; }
+        
+        ::view-transition-old(root) {
+            animation: 0.4s cubic-bezier(0.4, 0, 0.2, 1) both slide-out;
+        }
+        ::view-transition-new(root) {
+            animation: 0.4s cubic-bezier(0.4, 0, 0.2, 1) both slide-in;
+        }
+
+        @keyframes slide-in {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slide-out {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-20px); opacity: 0; }
+        }
+
+        body { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<nav class="bg-white/80 backdrop-blur-xl shadow-sm fixed top-0 z-50 w-full px-6 py-3 h-16 flex justify-between items-center font-['Manrope'] font-bold tracking-tight">
+<div class="text-xl font-extrabold text-blue-700 tracking-tighter flex items-center gap-3">
+    <a href="{{ url_for('dashboard') }}" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 transition-colors" title="Back to Dashboard">
+        <span class="material-symbols-outlined text-slate-600">arrow_back</span>
+    </a>
+    The Intelligent Curator
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-slate-500 hover:bg-slate-50 transition-colors px-3 py-1 rounded" href="{{ url_for('dashboard') }}">Home</a>
+<a class="text-slate-500 hover:bg-slate-50 transition-colors px-3 py-1 rounded" href="{{ url_for('companies') }}">Career Roadmap</a>
+</div>
+<div class="flex items-center space-x-4">
+<span class="material-symbols-outlined text-slate-500 hover:bg-slate-50 p-2 rounded-full cursor-pointer transition-colors" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-slate-500 hover:bg-slate-50 p-2 rounded-full cursor-pointer transition-colors" data-icon="settings">settings</span>
+<div class="w-8 h-8 rounded-full bg-slate-200 overflow-hidden">
+<img alt="User Profile Avatar" data-alt="close-up portrait of a professional male designer with a friendly expression in a brightly lit modern office studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE0SPNruEdLoy5rJFv1JXco998WBI1ATT_pOq8_U21zTeKEiioU0PpXP6vhPpMHYVv3OAmDe0MlBe3NJcS9G-nxbSqz-jnuWzuJEQwFY7K9_NBcnNmoItTbPlSYIsLxKKn5mNOmFBgEJiDldCvRxRuUF-ebT7hET7HgjidFJy1AM3ZH528gGp2W54qxVd_KExNc-V8VuxmzLAOsixKu0WsNSQt63N2IQAqZwL6zknKST9kgYFxsQlRmrETCrL7MAEVn7GPTu90tm08"/>
+</div>
+</div>
+</nav>
+<main class="pt-24 pb-16 px-6 max-w-7xl mx-auto">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            <div class="mb-4">
+            {% for message in messages %}
+              <div class="bg-error-container text-on-error-container px-4 py-3 rounded-lg relative font-body text-sm font-bold shadow-sm" role="alert">
+                <span class="block sm:inline">{{ message }}</span>
+              </div>
+            {% endfor %}
+            </div>
+          {% endif %}
+        {% endwith %}
+        
+        <div class="relative mb-12">
+            <div class="h-64 md:h-80 w-full rounded-xl overflow-hidden bg-slate-200 relative">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent z-10"></div>
+                <img class="w-full h-full object-cover relative z-0" alt="Company background" src="{{ job.image }}"/>
+            </div>
+            <div class="absolute -bottom-8 left-10 flex items-end space-x-6 z-20">
+                <div class="w-24 h-24 md:w-32 md:h-32 bg-white rounded-xl shadow-lg border-4 border-white flex items-center justify-center font-bold text-4xl text-slate-400 relative overflow-hidden p-4">
+                    <img src="{{ url_for('static', filename='images/' + COMPANY_LOGOS.get(job.company.lower(), 'amazon.png')) }}" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';" class="w-full h-full object-contain" alt="{{ job.company }} logo">
+                    <span class="absolute inset-0 flex flex-col items-center justify-center hidden">{{ job.company[:2] | upper }}</span>
+                </div>
+                <div class="mb-10 text-white shadow-sm">
+                    <h1 class="text-3xl md:text-5xl font-extrabold tracking-tight leading-none drop-shadow-xl text-white">{{ job.company }}</h1>
+                    <p class="text-xl font-semibold mt-2 drop-shadow-md text-blue-200">{{ job.title }}</p>
+                </div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-16">
+<div class="lg:col-span-8 space-y-12">
+<section class="bg-surface-container-low rounded-xl p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center">
+<span class="material-symbols-outlined mr-3 text-primary" data-icon="description">description</span>
+                        Job Description
+                    </h2>
+<div class="prose prose-slate max-w-none text-on-surface-variant leading-relaxed">
+<p class="mb-4">{{ job.description }}</p>
+<ul class="space-y-4 list-none p-0 mt-4">
+    <li class="flex items-start">
+        <span class="material-symbols-outlined text-secondary mr-3 mt-1 text-sm" data-icon="check_circle">check_circle</span>
+        Contribute to scalable architectures and high-quality codebase.
+    </li>
+    <li class="flex items-start">
+        <span class="material-symbols-outlined text-secondary mr-3 mt-1 text-sm" data-icon="check_circle">check_circle</span>
+        Collaborate with cross-functional teams spanning design and engineering.
+    </li>
+</ul>
+</div>
+</section>
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm border-l-4 border-secondary">
+<h2 class="text-2xl font-bold mb-6 flex items-center">
+<span class="material-symbols-outlined mr-3 text-secondary" data-icon="psychology">psychology</span>
+                        Required Skills
+                    </h2>
+                    <div class="flex flex-wrap gap-3">
+                        {% for skill in job.skills %}
+                        <span class="px-4 py-2 bg-secondary-fixed text-on-secondary-fixed-variant rounded-full text-sm font-semibold tracking-tight hover:bg-secondary-fixed-dim transition-colors">{{ skill }}</span>
+                        {% endfor %}
+                    </div>
+</section>
+</div>
+<aside class="lg:col-span-4 space-y-6">
+<form action="{{ url_for('upload_resume', job_id=job_id) }}" method="POST" enctype="multipart/form-data">
+<section class="bg-surface-container-lowest rounded-xl p-8 shadow-sm">
+<h2 class="text-xl font-bold mb-4">Apply Now</h2>
+<div class="mb-6">
+<p class="text-sm text-on-surface-variant mb-6 leading-relaxed">Submit your credentials for an instant AI-powered compatibility analysis.</p>
+<label class="border-2 border-dashed border-outline-variant rounded-xl p-8 flex flex-col items-center justify-center text-center hover:border-primary transition-colors cursor-pointer group bg-surface-container-low/50">
+<input type="file" name="resume" class="hidden" required accept=".pdf,.doc,.docx" id="resumeUpload" onchange="document.getElementById('fileName').innerText = this.files[0].name" />
+<span class="material-symbols-outlined text-5xl text-primary mb-4 opacity-70 group-hover:opacity-100 transition-opacity" data-icon="cloud_upload">cloud_upload</span>
+<p id="fileName" class="text-sm font-medium text-on-surface mb-2">Drag &amp; drop your resume here or click to browse</p>
+<p class="text-xs text-slate-400">Supported formats: PDF, DOCX (Max 5MB)</p>
+</label>
+</div>
+<button type="submit" class="w-full py-4 px-6 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-xl font-bold text-sm tracking-wide shadow-md hover:scale-[1.02] active:scale-95 transition-all">
+                        Upload &amp; Analyze
+                    </button>
+<div class="mt-6 flex items-center justify-center text-xs text-on-surface-variant">
+<span class="material-symbols-outlined text-xs mr-1" data-icon="lock">lock</span>
+                        Your data is processed securely by AI Curator
+                    </div>
+</section>
+</form>
+<div class="bg-secondary-container/20 rounded-xl p-6 border border-secondary/10">
+<h3 class="font-bold text-secondary mb-2 flex items-center">
+<span class="material-symbols-outlined text-sm mr-2" data-icon="auto_awesome">auto_awesome</span>
+                        Curator Insight
+                    </h3>
+<p class="text-xs text-on-secondary-container leading-relaxed">Our AI suggests you have a high potential match for this role. We recommend highlighting your 'Tailwind' projects in your resume.</p>
+</div>
+</aside>
+</div>
+</main>
+<footer class="w-full border-t border-slate-100 bg-slate-50">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center px-12 py-8 space-y-4 md:space-y-0">
+<div class="font-['Inter'] text-xs text-slate-500">
+                © 2024 The Intelligent Curator. Editorial Career Management.
+            </div>
+<div class="flex space-x-6 text-xs text-slate-400">
+<a class="hover:text-slate-900 transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-slate-900 transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-slate-900 transition-colors" href="#">Help Center</a>
+<a class="hover:text-slate-900 transition-colors" href="#">API Documentation</a>
+</div>
+</div>
+</footer>
+</body></html>

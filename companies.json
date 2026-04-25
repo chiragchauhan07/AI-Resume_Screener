@@ -1,0 +1,126 @@
+{
+    "companies_to_apply": [
+        {
+            "name": "Google",
+            "roles": [
+                "Software Engineer",
+                "Product Manager"
+            ],
+            "average_salary_lpa": "20-45"
+        },
+        {
+            "name": "Microsoft",
+            "roles": [
+                "SDE",
+                "Cloud Engineer"
+            ],
+            "average_salary_lpa": "18-40"
+        },
+        {
+            "name": "Amazon",
+            "roles": [
+                "SDE",
+                "Data Engineer"
+            ],
+            "average_salary_lpa": "15-35"
+        },
+        {
+            "name": "Adobe",
+            "roles": [
+                "Software Engineer",
+                "Designer"
+            ],
+            "average_salary_lpa": "15-35"
+        },
+        {
+            "name": "Atlassian",
+            "roles": [
+                "Software Engineer"
+            ],
+            "average_salary_lpa": "25-50"
+        },
+        {
+            "name": "Flipkart",
+            "roles": [
+                "SDE",
+                "Product Manager"
+            ],
+            "average_salary_lpa": "12-30"
+        },
+        {
+            "name": "Swiggy",
+            "roles": [
+                "Backend Developer",
+                "Product Manager"
+            ],
+            "average_salary_lpa": "10-30"
+        },
+        {
+            "name": "Zomato",
+            "roles": [
+                "Software Engineer",
+                "Analyst"
+            ],
+            "average_salary_lpa": "10-25"
+        },
+        {
+            "name": "Goldman Sachs",
+            "roles": [
+                "Financial Analyst",
+                "Engineer"
+            ],
+            "average_salary_lpa": "15-35"
+        },
+        {
+            "name": "JP Morgan",
+            "roles": [
+                "Analyst",
+                "Software Engineer"
+            ],
+            "average_salary_lpa": "12-30"
+        },
+        {
+            "name": "Deloitte",
+            "roles": [
+                "Consultant",
+                "Analyst"
+            ],
+            "average_salary_lpa": "8-20"
+        },
+        {
+            "name": "McKinsey",
+            "roles": [
+                "Business Analyst"
+            ],
+            "average_salary_lpa": "20-40"
+        },
+        {
+            "name": "BCG",
+            "roles": [
+                "Consultant"
+            ],
+            "average_salary_lpa": "20-45"
+        },
+        {
+            "name": "Infosys",
+            "roles": [
+                "Software Engineer"
+            ],
+            "average_salary_lpa": "5-12"
+        },
+        {
+            "name": "TCS",
+            "roles": [
+                "Software Engineer"
+            ],
+            "average_salary_lpa": "4-10"
+        },
+        {
+            "name": "Wipro",
+            "roles": [
+                "Software Engineer"
+            ],
+            "average_salary_lpa": "4-10"
+        }
+    ]
+}

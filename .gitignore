@@ -1,0 +1,25 @@
+# Python environment
+venv/
+ENV/
+env/
+bin/
+lib/
+include/
+
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Environment variables (Sensitive info)
+.env
+
+# Flask/OS specific
+instance/
+.pytest_cache/
+.vscode/
+.idea/
+*.log
+
+# Data/Uploads (Optional: Ignore if you don't want to share user uploads)
+static/uploads/

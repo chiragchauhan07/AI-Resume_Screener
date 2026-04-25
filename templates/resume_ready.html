@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <title>Your Resume is Ready | Nexus Talent</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                "colors": {
+                        "primary-container": "#2563eb",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "background": "#f7f9fb",
+                        "on-surface-variant": "#434655",
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#004ac6",
+                        "secondary": "#006c49"
+                },
+                "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"]
+                }
+              },
+            }
+          }
+    </script>
+    <style>
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        body { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased flex flex-col min-h-screen">
+<header class="fixed top-0 z-50 w-full glass-nav shadow-sm">
+    <div class="flex justify-between items-center w-full px-6 py-3 h-16 max-w-7xl mx-auto">
+        <div class="flex items-center gap-8">
+            <a href="{{ url_for('dashboard') }}" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 transition-colors" title="Back">
+                <span class="material-symbols-outlined text-slate-600">arrow_back</span>
+            </a>
+            <span class="text-xl font-extrabold text-primary tracking-tighter font-headline"><a href="/">Nexus Talent</a></span>
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a class="text-slate-500 hover:text-blue-600 transition-colors" href="{{ url_for('dashboard') }}">Home</a>
+                <a class="text-slate-500 hover:text-blue-600 transition-colors" href="{{ url_for('roadmap_domains') }}">Career Roadmap</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="flex-grow pt-32 pb-12 px-6 flex items-center justify-center">
+    <div class="bg-white p-10 md:p-16 rounded-3xl shadow-xl border border-slate-100 max-w-2xl w-full text-center relative overflow-hidden">
+        <div class="absolute -top-32 -left-32 w-64 h-64 bg-primary/5 rounded-full pointer-events-none"></div>
+        <div class="absolute -bottom-32 -right-32 w-64 h-64 bg-secondary/5 rounded-full pointer-events-none"></div>
+        
+        <div class="relative z-10">
+            <div class="w-24 h-24 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                <span class="material-symbols-outlined text-5xl">task_alt</span>
+            </div>
+            
+            <h1 class="font-headline font-extrabold text-4xl tracking-tight mb-4 text-slate-900">Your Resume is Ready!</h1>
+            <p class="text-lg text-on-surface-variant mb-10">We've generated a clean, professional, ATS-friendly resume for <strong class="text-primary">{{ data.name }}</strong> tailored for <strong class="text-primary">{{ data.domain }}</strong> roles.</p>
+            
+            <div class="grid sm:grid-cols-2 gap-6">
+                <a href="{{ url_for('download_resume', fmt='pdf') }}" class="flex flex-col items-center justify-center gap-3 p-6 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-2xl transition-colors group">
+                    <span class="material-symbols-outlined text-4xl text-red-500 group-hover:scale-110 transition-transform">picture_as_pdf</span>
+                    <span class="font-bold text-slate-700">Download PDF</span>
+                </a>
+                <a href="{{ url_for('download_resume', fmt='docx') }}" class="flex flex-col items-center justify-center gap-3 p-6 bg-slate-50 hover:bg-slate-100 border border-slate-200 rounded-2xl transition-colors group">
+                    <span class="material-symbols-outlined text-4xl text-blue-500 group-hover:scale-110 transition-transform">description</span>
+                    <span class="font-bold text-slate-700">Download DOCX</span>
+                </a>
+            </div>
+
+            <div class="mt-10">
+                <a href="{{ url_for('dashboard') }}" class="text-primary font-semibold hover:underline text-sm">Return to Home</a>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

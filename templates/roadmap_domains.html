@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/favicon.png') }}">
+    <title>Career Roadmap Domains | Nexus Talent</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script id="tailwind-config">
+          tailwind.config = {
+            darkMode: "class",
+            theme: {
+              extend: {
+                "colors": {
+                        "primary-container": "#2563eb",
+                        "on-primary": "#ffffff",
+                        "on-surface": "#191c1e",
+                        "background": "#f7f9fb",
+                        "on-surface-variant": "#434655",
+                        "surface": "#f7f9fb",
+                        "surface-container-lowest": "#ffffff",
+                        "primary": "#004ac6",
+                        "secondary": "#006c49"
+                },
+                "fontFamily": {
+                        "headline": ["Manrope"],
+                        "body": ["Inter"]
+                }
+              },
+            }
+          }
+    </script>
+    <style>
+        .glass-nav { background: rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px); }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        /* Premium Slide Transition */
+        @view-transition { navigation: auto; }
+        
+        ::view-transition-old(root) {
+            animation: 0.4s cubic-bezier(0.4, 0, 0.2, 1) both slide-out;
+        }
+        ::view-transition-new(root) {
+            animation: 0.4s cubic-bezier(0.4, 0, 0.2, 1) both slide-in;
+        }
+
+        @keyframes slide-in {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        @keyframes slide-out {
+            from { transform: translateX(0); opacity: 1; }
+            to { transform: translateX(-20px); opacity: 0; }
+        }
+
+        body { animation: fadeIn 0.4s ease-out forwards; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface antialiased">
+
+<header class="fixed top-0 z-50 w-full glass-nav shadow-sm">
+    <div class="flex justify-between items-center w-full px-6 py-3 h-16 max-w-7xl mx-auto">
+        <div class="flex items-center gap-8">
+            <a href="{{ url_for('dashboard') }}" class="flex items-center justify-center w-10 h-10 rounded-full hover:bg-slate-100 transition-colors" title="Back">
+                <span class="material-symbols-outlined text-slate-600">arrow_back</span>
+            </a>
+            <span class="text-xl font-extrabold text-primary tracking-tighter font-headline"><a href="/">Nexus Talent</a></span>
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
+                <a class="text-slate-500 hover:text-blue-600 transition-colors" href="{{ url_for('dashboard') }}">Home</a>
+                <a class="text-blue-700 font-bold border-b-2 border-blue-600 pb-1" href="{{ url_for('roadmap_domains') }}">Career Roadmap</a>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<main class="pt-24 pb-12 px-6 max-w-7xl mx-auto min-h-screen">
+    <section class="mb-12 text-center">
+        <h1 class="font-headline font-extrabold text-5xl tracking-tight mb-4">Choose Your Path</h1>
+        <p class="text-lg text-on-surface-variant max-w-2xl mx-auto">Select a domain below to explore top companies and uncover the specific skills they demand for their highest-paying roles.</p>
+    </section>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {% for dom_id, domain in domains.items() %}
+        <a href="{{ url_for('roadmap_domain', domain_id=dom_id) }}" class="group bg-surface-container-lowest p-8 rounded-3xl shadow-lg border border-slate-100 hover:shadow-2xl hover:-translate-y-2 transition-all block text-center">
+            <div class="w-16 h-16 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-6 text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-white transition-all">
+                <span class="material-symbols-outlined text-3xl">{{ domain.icon }}</span>
+            </div>
+            <h3 class="font-headline font-bold text-2xl mb-2">{{ domain.name }}</h3>
+            <p class="text-sm text-on-surface-variant">{{ domain.desc }}</p>
+        </a>
+        {% endfor %}
+    </div>
+</main>
+
+<footer class="w-full border-t border-slate-100 bg-slate-50 mt-12">
+    <div class="flex flex-col md:flex-row justify-between items-center px-12 py-8 max-w-7xl mx-auto">
+        <div class="text-xs text-slate-500 font-['Inter']">© 2024 Nexus Talent.</div>
+    </div>
+</footer>
+
+</body>
+</html>
