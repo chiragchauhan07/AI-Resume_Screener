@@ -1,0 +1,14 @@
+# Exclude local environment and cache from the Docker image
+venv/
+.env
+.git/
+.gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.vscode/
+.idea/
+Dockerfile
+.dockerignore
+vercel.json
