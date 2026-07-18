@@ -4,6 +4,8 @@ An AI-powered career platform that scores resumes against real job listings,
 maps skill gaps to learning resources, and builds exportable resumes — all in
 one Flask app.
 
+**Live demo:** https://ai-resume-screener-umlq.onrender.com/
+
 ## Features
 
 - **Job Dashboard** — browse listings across domains (Tech, Finance, Design,
