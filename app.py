@@ -11,7 +11,7 @@ import traceback
 import zipfile
 from docx import Document
 from fpdf import FPDF
-from flask import Flask, render_template, request, redirect, url_for, session, flash, send_file
+from flask import Flask, render_template, request, redirect, url_for, session, flash, send_file, jsonify
 from sentence_transformers import SentenceTransformer, util
 
 def clean_text_for_pdf(text):
@@ -102,6 +102,11 @@ print("AI Model loaded successfully.")
 
 app = Flask(__name__)
 app.secret_key = os.getenv("FLASK_SECRET_KEY", "fallback_secret_key_for_dev")
+
+
+@app.route("/health", methods=["GET"])
+def health_check():
+    return jsonify({"status": "healthy"}), 200
 
 @app.context_processor
 def inject_logos():
@@ -777,6 +782,8 @@ def dashboard():
     home_jobs = dict(list(all_prioritized.items())[:6])
     
     return render_template("dashboard.html", jobs=home_jobs, domains=domains)
+
+
 
 @app.route("/companies")
 def companies():
